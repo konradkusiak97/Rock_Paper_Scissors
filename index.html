@@ -1,0 +1,77 @@
+<script>
+    let choices = ['rock', 'paper', 'scissors'];
+
+    // Returning randomly Rock, Paper or Scissors
+    function computerPlay() {
+        let randNum = Math.floor(Math.random()*3);
+        return choices[randNum];
+    }
+    // Playing single round
+    function playRound (playerSelection, computerSelection) {
+        playerSelection = playerSelection.toLowerCase();
+        switch(playerSelection) {
+            case 'rock':
+                switch(computerSelection) {
+                    case 'rock':
+                        return 2;
+                    case 'paper':
+                        return 0;
+                    case 'scissors':
+                        return 1;
+                }
+            case 'paper':
+                switch(computerSelection) {
+                        case 'rock':
+                            return 1;
+                        case 'paper':
+                            return 2;
+                        case 'scissors':
+                            return 0;
+                }
+            case 'scissors':
+                switch(computerSelection) {
+                        case 'rock':
+                            return 0;
+                        case 'paper':
+                            return 1;
+                        case 'scissors':
+                            return 2;
+                }    
+        }
+    }
+    // Main game
+    function game() {
+        let yourScore = 0;
+        let compScore = 0;
+        for (let i=0; i < 5; i++){
+            let playerSelect = prompt("rock, paper or scissors? Choose: ");
+            let computerSelect = computerPlay();
+            if (playRound(playerSelect, computerSelect) == 1) {
+                yourScore++;
+                console.log("You win! "+playerSelect," beats "+computerSelect);
+                console.log("Your score: "+yourScore);
+                console.log("Computer Score: "+compScore);
+            }
+            else if (playRound(playerSelect, computerSelect) == 0) {
+                compScore++;
+                console.log("You Lose! "+computerSelect," beats "+playerSelect);
+                console.log("Your score: "+yourScore);
+                console.log("Computer Score: "+compScore);
+            }
+            else {
+                console.log("It's a tie!")
+                console.log("Your score: "+yourScore);
+                console.log("Computer Score: "+compScore);
+            }
+        }
+        if (yourScore > compScore)
+            console.log("You won!")
+        else if (compScore > yourScore)
+            console.log("You lost!")
+        else 
+            console.log("It's a tie!")
+    }
+    // Running a game
+    game();
+    
+</script>
